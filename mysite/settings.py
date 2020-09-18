@@ -32,7 +32,7 @@ SECRET_KEY = 'aweleh3r#=j_#0+r$%-5szhfc(2vzn_uk5zu1x3&*_#8b7=)0%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-mavenkim2.herokuapp.com']
 
 
 # Application definition
