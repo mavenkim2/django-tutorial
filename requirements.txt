@@ -3,3 +3,4 @@ gunicorn
 django-heroku
 whitenoise
 django-crispy-forms==1.9.1
+$pip freeze > requirements.txt.
