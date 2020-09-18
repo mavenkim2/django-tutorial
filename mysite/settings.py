@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import os
 from pathlib import Path
+try:
+    import django_heroku
+    django_heroku.settings(locals())
+except ImportError:
+    found = False
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -127,8 +132,3 @@ USE_TZ = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, '../polls/static')
 STATIC_URL = '/static/'
-try:
-    import django_heroku
-    django_heroku.settings(locals())
-except ImportError:
-    found = False
