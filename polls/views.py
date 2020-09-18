@@ -4,7 +4,8 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 
-from .models import Choice, Question
+from .models import Choice, Question, Comments
+from .forms import CommentForm
 
 
 class IndexView(generic.ListView):
@@ -34,6 +35,14 @@ class ResultsView(generic.DetailView):
     template_name = 'polls/results.html'
 
 
+class CommentsView(generic.ListView):
+    template_name = 'polls/comments_view.html'
+    context_object_name = 'comments_list'
+
+    def get_queryset(self):
+        return Comments.objects.all()
+
+
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
@@ -51,3 +60,15 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+
+def comment(request):
+    message = ""
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            message = "Comment posted successfully!"
+    else:
+        message = "Fill out all fields before submitting."
+    return render(request, 'polls/comments.html', {'form': CommentForm(), 'message': message})

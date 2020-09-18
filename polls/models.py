@@ -26,3 +26,12 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+
+class Comments(models.Model):
+    name = models.CharField(max_length=200)
+    body = models.TextField()
+
+    def __str__(self):
+        return self.body
+

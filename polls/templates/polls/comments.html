@@ -1,0 +1,16 @@
+{% extends 'polls/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if message %}<p><strong>{{ message }}</strong></p>{% endif %}
+<form action="{% url 'polls:comments' %}" method="post" novalidate>
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-2">
+            {{ form.name|as_crispy_field }}
+        </div>
+    </div>
+    {{ form.body|as_crispy_field }}
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'polls/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<p><strong>Comments List</strong></p>
+{% if comments_list %}
+    <ul>
+    {% for comment in comments_list %}
+        <li>{{ comment.name }} -- {{ comment.body }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No comments are available.</p>
+{% endif %}
+{% endblock %}
