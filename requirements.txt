@@ -2,4 +2,4 @@ Django
 gunicorn
 django-heroku
 whitenoise
-bootstrap-4.5.2-dist
+django-crispy-forms==1.9.1
